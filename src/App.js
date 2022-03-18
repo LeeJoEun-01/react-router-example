@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import Home from "./pages/Home";
+import Profile from './pages/Profile';
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+import Links from "./components/Links";
+import NavLinks from "./components/NavLinks";
+import Login from "./pages/Login";
+
+const isLogin = true; //true이면 home페이지로 이동 / false면 login 페이지로 이동 
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Links />
+      <NavLinks />
+      <Switch>
+        <Route path="/login" render={() => (isLogin ? <Redirect to="/" /> : <Login />)} />
+        <Route path="/profile/:id" component={Profile} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/about" component={About} />
+        <Route exact path="/" component={Home} /> 
+        <Route component={NotFound} /> 
+      </Switch>
+    </BrowserRouter>
   );
 }
 

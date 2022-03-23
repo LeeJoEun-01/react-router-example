@@ -7,7 +7,7 @@ import Links from "./components/Links";
 import NavLinks from "./components/NavLinks";
 import Login from "./pages/Login";
 
-const isLogin = true; //true이면 home페이지로 이동 / false면 login 페이지로 이동 
+const isLogin = false; //true이면 home페이지로 이동 / false면 login 페이지로 이동 
 
 function App() {
   return (
